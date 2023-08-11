@@ -1,16 +1,12 @@
 #!/usr/bin/python3
 
-def my_custom_addition(a, b):
-    """My custom addition function
+from add_0 import add as my_add_function
 
-    Args:
-        a: first operand
-        b: second operand
+def main():
+    a = 1
+    b = 2
+    result = my_add_function(a, b)
+    print("{} + {} = {}".format(a, b, result))
 
-    Returns:
-        The sum of a and b
-    """
-    return a + b
-
-result = my_custom_addition(1, 2)
-print("Result of addition: {}".format(result))
+if __name__ == "__main__":
+    main()
