@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-def display_integer_list(custom_list=[]):
+def print_list_integer(custom_list=[]):
     """
     Display a list of provided integers
     """
