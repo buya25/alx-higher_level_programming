@@ -1,8 +1,8 @@
 #include "lists.h"
 #include <stdio.h>
 
-void reverse_list(custom_list_node_t **head);
-int list_equiv(custom_list_node_t *list1, custom_list_node_t *list2);
+void reverse_list(listint_t **head);
+int list_equiv(listint_t *list1, listint_t *list2);
 
 /**
  * is_palindrome - checks if a linked list is a palindrome
@@ -10,9 +10,9 @@ int list_equiv(custom_list_node_t *list1, custom_list_node_t *list2);
  *
  * Return: 0 (not palindrome) 1 (is palindrome)
  */
-int is_palindrome(custom_list_node_t **head)
+int is_palindrome(listint_t **head)
 {
-	custom_list_node_t *skip_ptr1, *skip_ptr2, *prev_skip_ptr1, *first_half, *second_half, *middle_ptr;
+	listint_t *skip_ptr1, *skip_ptr2, *prev_skip_ptr1, *first_half, *second_half, *middle_ptr;
 
 	if (!head || !(*head) || !((*head)->next))
 		return 1;
@@ -52,7 +52,7 @@ int is_palindrome(custom_list_node_t **head)
  *
  * Return: 1 (equivalent) 0 (not equal)
  */
-int list_equiv(custom_list_node_t *list1, custom_list_node_t *list2)
+int list_equiv(listint_t *list1, listint_t *list2)
 {
 	while (list1 || list2)
 	{
@@ -74,9 +74,9 @@ int list_equiv(custom_list_node_t *list1, custom_list_node_t *list2)
  *
  * Return: always void, modifies head itself.
  */
-void reverse_list(custom_list_node_t **head)
+void reverse_list(listint_t **head)
 {
-	custom_list_node_t *next_node = NULL, *prev_node = NULL, *current_node;
+	listint_t *next_node = NULL, *prev_node = NULL, *current_node;
 
 	current_node = *head;
 
