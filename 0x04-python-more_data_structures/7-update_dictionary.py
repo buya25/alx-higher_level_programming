@@ -1,9 +1,9 @@
 #!/usr/bin/python3
-def dictionary_with_updated_key_value(original_dict, update_key, update_value):
+
+def update_dictionary(a_dictionary, key, value):
     """
-    updates a dictionary and returns a new copy
-    original is affected
+    Updates a dictionary and returns a new copy.
+    The original dictionary is affected.
     """
-    updated_dict = original_dict.copy()
-    updated_dict[update_key] = update_value
-    return updated_dict
+    a_dictionary.update({key: value})
+    return a_dictionary.copy()

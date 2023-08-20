@@ -1,13 +1,14 @@
 #!/usr/bin/python3
-def get_highest_score_name(scores_dict):
+
+def best_score(a_dictionary):
     """
-    gets the best value from a dictionary (greatest integer)
+    Gets the best value from a dictionary (greatest integer).
     """
-    winner_name = None
-    highest_score = float('-inf')  # Initialize with negative infinity
-    if isinstance(scores_dict, dict):
-        for name, score in scores_dict.items():
-            if isinstance(score, int) and score > highest_score:
-                highest_score = score
-                winner_name = name
-    return winner_name
+    win_n = 0
+    winner = None
+    if isinstance(a_dictionary, dict):
+        for key, value in a_dictionary.items():
+            if value > win_n:
+                win_n = value
+                winner = key
+    return winner

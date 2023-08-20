@@ -1,6 +1,7 @@
 #!/usr/bin/python3
-def count_dict_keys(input_dict):
+
+def number_keys(a_dictionary):
     """
-    counts the number of keys in a dictionary and returns it
+    Counts the number of keys in a dictionary and returns it
     """
-    return len(input_dict)
+    return len(a_dictionary)

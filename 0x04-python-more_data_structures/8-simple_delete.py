@@ -1,8 +1,9 @@
 #!/usr/bin/python3
-def delete_key_from_dict(original_dict, delete_key=""):
+
+def simple_delete(a_dictionary, key=""):
     """
-    deletes an element based on the key from a dictionary
+    Deletes an element based on the key from a dictionary.
     """
-    if delete_key != "" and delete_key in original_dict:
-        del original_dict[delete_key]
-    return original_dict.copy()
+    if key != "" and key in a_dictionary:
+        a_dictionary.pop(key)
+    return a_dictionary.copy()

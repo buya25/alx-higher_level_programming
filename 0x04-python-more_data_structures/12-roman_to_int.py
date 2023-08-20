@@ -1,32 +1,62 @@
 #!/usr/bin/python3
-def roman_to_int_converter(ch):
+
+def convert_roman(ch):
     """
-    converts a roman numeral character into the respective integer
+    Converts a Roman numeral character into the respective integer.
     """
-    roman_values = {'I': 1, 'V': 5, 'X': 10, 'L': 50, 'C': 100, 'D': 500, 'M': 1000}
-    return roman_values.get(ch, -1)
+    ret = -1
+    if ch == 'I':
+        ret = 1
+    elif ch == 'V':
+        ret = 5
+    elif ch == 'X':
+        ret = 10
+    elif ch == 'L':
+        ret = 50
+    elif ch == 'C':
+        ret = 100
+    elif ch == 'D':
+        ret = 500
+    elif ch == 'M':
+        ret = 1000
+    return ret
 
 
-def convert_roman_to_integer(roman_string):
+def roman_to_int(roman_string):
     """
-    converts any string of roman numerals to decimal
+    Converts a string of Roman numerals to decimal.
     """
-    if not isinstance(roman_string, str):
+    cur_max = -1
+    cur = conv = 0
+    holder = []
+
+    if roman_string is None or not isinstance(roman_string, str):
         return 0
-
-    integer_value = 0
-    previous_value = 0
-
+    
     for c in roman_string:
-        current_value = roman_to_int_converter(c)
-        if current_value == -1:
+        cur = convert_roman(c)
+        if cur == -1:
             return 0
-
-        if current_value > previous_value:
-            integer_value += current_value - 2 * previous_value
+        if len(holder) == 0:
+            if cur == cur_max or cur_max == -1:
+                cur_max = cur
+                conv += cur
+            elif cur < cur_max:
+                holder.append(cur)
+            elif cur > cur_max:  # Only happens if smaller is starting number
+                # For example: IIX, VXC
+                cur_max = cur
+                cur -= conv
+                conv = cur
         else:
-            integer_value += current_value
-        
-        previous_value = current_value
+            if cur > holder[-1]:
+                cur_max = cur
+                cur -= sum(holder)
+                conv += cur
+                holder.clear()
+            else:
+                holder.append(cur)
 
-    return integer_value
+    if len(holder) != 0:
+        conv += sum(holder)
+    return conv
