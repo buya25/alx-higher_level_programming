@@ -1,21 +1,25 @@
 #!/usr/bin/python3
-"""
-find the peek
-"""
+"""Finds a peak in a list"""
 
 
-def find_peak(arr):
-    """
-        find the peek
-    """
-    if arr == []:
+def recurse(arr, low, high, n):
+    """Recursive peak finder"""
+    mid = low + (high - low)//2
+    if (mid == 0 or arr[mid - 1] <= arr[mid]) and\
+            (mid == n - 1 or arr[mid + 1] <= arr[mid]):
+        return arr[mid]
+    elif (mid > 0 and arr[mid - 1] > arr[mid]):
+        return recurse(arr, low, mid - 1, n)
+    else:
+        return recurse(arr, mid + 1, high, n)
+
+
+def find_peak(list_of_integers):
+    """Finds a peak in a list of integers"""
+    if not list_of_integers:
         return None
-    if len(arr) == 1:
-        return arr[0]
-    if arr[0] >= arr[1]:
-        return arr[0]
-    if arr[len(arr) - 1] >= arr[len(arr) - 2]:
-        return arr[len(arr) - 1]
-    for i in range(1, len(arr) - 1):
-        if arr[i] >= arr[i - 1] and arr[i] >= arr[i + 1]:
-            return arr[i]
+    return recurse(
+            list_of_integers, 0,
+            len(list_of_integers) - 1,
+            len(list_of_integers)
+        )
