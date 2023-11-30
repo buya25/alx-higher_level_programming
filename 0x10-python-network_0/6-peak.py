@@ -1,25 +1,24 @@
 #!/usr/bin/python3
-"""Finds a peak in a list"""
+"""script for finding peak in list of ints, interview prep
+"""
 
+"""
+    THOUGHT PROCESS
+        it is not sorted, so sorting would take n(log(n))
+            -> not worth sorting
+        looping through and keeping track of max (brute force)
+            -> O(n)
 
-def recurse(arr, low, high, n):
-    """Recursive peak finder"""
-    mid = low + (high - low)//2
-    if (mid == 0 or arr[mid - 1] <= arr[mid]) and\
-            (mid == n - 1 or arr[mid + 1] <= arr[mid]):
-        return arr[mid]
-    elif (mid > 0 and arr[mid - 1] > arr[mid]):
-        return recurse(arr, low, mid - 1, n)
-    else:
-        return recurse(arr, mid + 1, high, n)
+        possibly looping from each end reducing to 1/2 run time
+            -> still O(n)
+"""
 
 
 def find_peak(list_of_integers):
-    """Finds a peak in a list of integers"""
-    if not list_of_integers:
-        return None
-    return recurse(
-            list_of_integers, 0,
-            len(list_of_integers) - 1,
-            len(list_of_integers)
-        )
+    """BRUTE force implementation for question
+    """
+    max_i = None
+    for ele in list_of_integers:
+        if max_i is None or max_i < ele:
+            max_i = ele
+    return max_i
