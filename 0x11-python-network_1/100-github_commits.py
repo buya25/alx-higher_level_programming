@@ -1,22 +1,27 @@
 #!/usr/bin/python3
-"""script for posting data to star wars api
+
 """
-if __name__ == "__main__":
-    import requests
+holberton interview :
+Write a Python script that takes 2 arguments in order to solve this challenge.
+
+    The first argument will be the repository name
+    The second argument will be the owner name
+    You must use the packages requests and sys
+    You are not allowed to import packages other than requests and sys
+    You don’t need to check arguments passed to the script (number or type)
+
+"""
+
+if __name__ == '__main__':
     import sys
-    url = "https://api.github.com/"
-    username = sys.argv[1]
-    repo = sys.argv[2]
-    commits_url = url + "repos/{}/{}/commits".format(username, repo)
-    response = requests.get(commits_url)
-    if response.status_code == requests.codes.ok and len(response.text) > 0:
-        try:
-            my_obj = response.json()
-            for i, obj in enumerate(my_obj):
-                if i == 10:
-                    break
-                if type(obj) is dict:
-                    name = obj.get('commit').get('author').get('name')
-                    print("{}: {}".format(obj.get('sha'), name))
-        except ValueError as invalid_json:
-            pass
+    import requests
+    repo_name = sys.argv[1]
+    owner_name = sys.argv[2]
+    repo_info = owner_name + "/" + repo_name
+    url = "https://api.github.com/repos/" + repo_info + "/commits"
+    r = requests.get(url)
+    top = r.json()[:10]
+    for i in top:
+        el = i['sha']
+        author = i['commit']['author']['name']
+        print('{}: {}'.format(el, author))
